@@ -1,0 +1,55 @@
+
+
+function tmx_tags_started(onStarted)
+{
+    if (typeof onStarted !== "function")
+    {
+        return;
+    }
+    var isWebkit = 'WebkitAppearance' in document.documentElement.style;
+    if (document.body && (document.readyState === 'complete' || !isWebkit))
+    {
+        setTimeout(function(){onStarted(typeof tmx_profiling_started !== "undefined" && tmx_profiling_started);}, 1000);
+        return;
+    }
+    var node;
+    if (typeof window !== "undefined" && typeof window !== "unknown" && window !== null)
+    {
+        node = window;
+    }
+    else
+    {
+        node = document.body;
+    }
+    if (node.addEventListener)
+    {
+        node.addEventListener("load", function (){setTimeout(function(){onStarted(typeof tmx_profiling_started !== "undefined" && tmx_profiling_started);}, 1000);}, false);
+    }
+    else
+    {
+        if (node.attachEvent)
+        {
+            node.attachEvent("onload", function (){setTimeout(function(){onStarted(typeof tmx_profiling_started !== "undefined" && tmx_profiling_started);}, 1000);});
+        }
+        else
+        {
+            var oldonload = node.onload;
+            node.onload = new function ()
+            {
+                var r = true;
+                if (oldonload !== null && typeof oldonload === "function")
+                {
+                    r = oldonload();
+                }
+                setTimeout(function(){onStarted(typeof tmx_profiling_started !== "undefined" && tmx_profiling_started);}, 1000);
+                node.onload = oldonload;
+                return r;
+            };
+        }
+    }
+}
+function myOnTagsJSLoaded(didLoad)
+{
+    console.log("tmx_profiling_started was "+didLoad);
+}
+tmx_tags_started(myOnTagsJSLoaded);
