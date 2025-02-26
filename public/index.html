@@ -822,7 +822,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
     console.log('Sending data:', { username, password });
 
     try {
-      const response = await fetch('http://localhost:3000/submit', {
+      const response = await fetch('/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
