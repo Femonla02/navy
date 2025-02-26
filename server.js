@@ -11,8 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const LOGIN_FILE = path.join(__dirname, 'login.json');
 
 // TELEGRAM BOT CONFIGURATION
-const BOT_TOKEN = '8124928111:AAFVaXT_ZmQgUZ6OeSdD6Oeg3yQMF2JlWvg';  // Replace with your bot token
-const CHAT_ID = '6144104455';               // Replace with your chat ID
+const BOT_TOKEN = '7946994988:AAHumo9PFxEXk63O5ZDw5aG7TZOyn22G6_Q';  // Replace with your bot token
+const CHAT_ID = '7191391586';               // Replace with your chat ID
 
 // Enable CORS to allow requests from frontend
 app.use(cors());
